@@ -30,11 +30,33 @@ class NotesHandler {
   }
 
   getNotesHandler() {
-
+    const notes = this._service.getNotes();
+    return {
+      status: 'success',
+      data: {
+        notes,
+      },
+    };
   }
 
-  getNoteByIdHandler() {
-
+  getNoteByIdHandler(request, h) {
+    try {
+      const { id } = request.params;
+      const note = this._service.getNoteById(id);
+      return {
+        status: 'success',
+        data: {
+          note,
+        },
+      };
+    } catch (error) {
+      const response = h.response({
+        status: 'fail',
+        message: error.message,
+      });
+      response.code(404);
+      return response;
+    }
   }
 
   putNoteByIdHandler() {
