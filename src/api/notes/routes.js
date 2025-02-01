@@ -2,7 +2,7 @@ const routes = (handler) => [
   {
     method: 'POST',
     path: '/notes',
-    handler: handler.postNotesHandler,
+    handler: handler.postNoteHandler,
   },
   {
     method: 'GET',
