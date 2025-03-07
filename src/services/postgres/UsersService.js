@@ -38,22 +38,21 @@ class UserService {
     const result = await this._pool.query(query);
 
     if (result.rows.length > 0) {
-      throw new InvariantError('Gagal menambahkan user. Username sudah digunakan');
+      throw new InvariantError('Gagal menambahkan user. Username sudah digunakan.');
     }
   }
 
   async getUserById(userId) {
     const query = {
-      text: 'SELECT * FROM users WHERE id = $1',
+      text: 'SELECT id, username, fullname FROM users WHERE id = $1',
       values: [userId],
     };
+    // console.log(userId);
 
     const result = await this._pool.query(query);
-
     if (!result.rows.length) {
       throw new NotFoundError('User tidak ditemukan');
     }
-
     return result.rows[0];
   }
 }

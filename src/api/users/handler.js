@@ -24,13 +24,14 @@ class UsersHandler {
   }
 
   async getUserByIdHandler(request) {
-    const { id } = request.params;
-    const users = await this._service.getUserById(id);
+    const { userId } = request.params;
+    console.log(userId);
 
+    const user = await this._service.getUserById(userId);
     return {
       status: 'success',
       data: {
-        users,
+        user,
       },
     };
   }
