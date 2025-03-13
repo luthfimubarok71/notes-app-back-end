@@ -47,7 +47,6 @@ class UserService {
       text: 'SELECT id, username, fullname FROM users WHERE id = $1',
       values: [userId],
     };
-    // console.log(userId);
 
     const result = await this._pool.query(query);
     if (!result.rows.length) {
